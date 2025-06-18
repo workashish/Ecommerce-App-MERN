@@ -1,9 +1,12 @@
-
+import { Route, Routes } from "react-router-dom";
+import Home from "./Home";
+import Login from "./Login";
 function App() {
   return (
-    <div className="container text-center">
-      <h1>MERN Project - Ecommerce App</h1>
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+    </Routes>
   );
 }
 
