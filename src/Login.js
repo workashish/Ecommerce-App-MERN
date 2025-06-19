@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-function Login(){
+function Login({updateUserDetails}) {
     //capture username / password
     const [formData, setFormData] = useState({ 
         username: "",
@@ -39,20 +39,20 @@ function Login(){
 
     if(validateForm()) {
         if(formData.username === "admin" && formData.password === "admin") {
-            setMessage("Login successful!");
+            updateUserDetails({
+                name: "Ashish",
+                email: "ashish@gmail.com"
+            });
         }else {
             setMessage("Invalid username or password.");
         }
     }
 }
-
-
-
   return (
     <div>
       <h2>Login Page</h2>
         {message && message}
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>Username:</label>
         <input type="text" name="username" value={formData.username} onChange={handleChange} />
         {errors.username && errors.username}
@@ -61,7 +61,7 @@ function Login(){
         <input type="password" name="password" value={formData.password} onChange={handleChange} />
         {errors.password && errors.password}
         <br />
-        <button type="submit" onClick={handleSubmit}>Login</button>
+        <button type="submit">Login</button>
       </form>
     </div>
   );
