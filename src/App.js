@@ -6,6 +6,8 @@ import Dashboard from "./pages/Dashboard";
 import React, { use, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useEffect } from "react";
+import Logout from "./pages/Logout";
+import Error from "./pages/Error";
 function App() {
   const [userDetails, setUserDetails] = useState(null);
 
@@ -32,6 +34,8 @@ function App() {
       <Route path="/" element={userDetails ? <Navigate to='/dashboard' /> : <AppLayout><Home /></AppLayout>} />
       <Route path="/login" element={userDetails ? <Navigate to='/dashboard' /> : <AppLayout><Login updateUserDetails={updateUserDetails} /></AppLayout>} />
       <Route path="/dashboard" element={userDetails ? <Dashboard /> : <Navigate to='/login' />} />
+      <Route path="/logout" element={userDetails ? <Logout updateUserDetails={updateUserDetails} /> : <Navigate to='/login' />} />
+      <Route path="/error" element={userDetails ? <Error /> : <AppLayout><Error /></AppLayout>} />
     </Routes>
   );
 }
